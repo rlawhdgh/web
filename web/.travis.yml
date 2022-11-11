@@ -1,0 +1,35 @@
+language: generic
+
+
+sudo: required
+
+
+
+services:
+  - docker
+
+
+script:
+  - docker build -t jjangga7000/project ./
+
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
+
+  - docker push jjangga7000/project
+
+#deploy:
+#  provider: elasticbeanstalks
+#  region: "ap-northeast-2"
+#  app: "test-kor"                    #앱 이름
+#  env: "Testkor-env"               #EB 이름
+#  bucket_name: elasticbeanstalk-ap-northeast-2-818548501241    #S3 버킷 이름
+#  skip_cleanup: true
+#  bucket_path: "test-kor"            #앱이름
+#  on:
+#    branch: main
+  
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key: $AWS_SECRET_ACCESS_KEY
+
+
+
+
